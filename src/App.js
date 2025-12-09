@@ -1,5 +1,3 @@
-// CODE B WITH THEME TOGGLE ADDED
-
 import React, { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Play, Plus, Trash2, Brain, RotateCcw, Moon, Sun } from 'lucide-react';
@@ -279,10 +277,8 @@ const CPUSchedulerSimulator = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
           {/* Process Input */}
           <div
-            className={`rounded-lg p-6 shadow-2xl ${
-              isDarkMode
-                ? 'bg-gray-800 border border-gray-700'
-                : 'bg-white'
+            className={`rounded-lg shadow-2xl p-6 ${
+              isDarkMode ? 'bg-gray-800 border border-gray-700' : 'bg-white border border-gray-200'
             }`}
           >
             <h2
@@ -300,7 +296,7 @@ const CPUSchedulerSimulator = () => {
                 className={`border-2 rounded px-3 py-2 focus:outline-none ${
                   isDarkMode
                     ? 'bg-gray-700 border-gray-600 text-gray-100 placeholder-gray-500 focus:border-blue-500'
-                    : 'border-gray-300 focus:border-indigo-500'
+                    : 'bg-white border-gray-300 text-gray-900 placeholder-gray-400 focus:border-indigo-500'
                 }`}
                 value={newProcess.pid}
                 onChange={(e) => setNewProcess({...newProcess, pid: e.target.value})}
@@ -311,7 +307,7 @@ const CPUSchedulerSimulator = () => {
                 className={`border-2 rounded px-3 py-2 focus:outline-none ${
                   isDarkMode
                     ? 'bg-gray-700 border-gray-600 text-gray-100 placeholder-gray-500 focus:border-blue-500'
-                    : 'border-gray-300 focus:border-indigo-500'
+                    : 'bg-white border-gray-300 text-gray-900 placeholder-gray-400 focus:border-indigo-500'
                 }`}
                 value={newProcess.arrival}
                 onChange={(e) => setNewProcess({...newProcess, arrival: e.target.value})}
@@ -322,7 +318,7 @@ const CPUSchedulerSimulator = () => {
                 className={`border-2 rounded px-3 py-2 focus:outline-none ${
                   isDarkMode
                     ? 'bg-gray-700 border-gray-600 text-gray-100 placeholder-gray-500 focus:border-blue-500'
-                    : 'border-gray-300 focus:border-indigo-500'
+                    : 'bg-white border-gray-300 text-gray-900 placeholder-gray-400 focus:border-indigo-500'
                 }`}
                 value={newProcess.burst}
                 onChange={(e) => setNewProcess({...newProcess, burst: e.target.value})}
@@ -333,7 +329,7 @@ const CPUSchedulerSimulator = () => {
                 className={`border-2 rounded px-3 py-2 focus:outline-none ${
                   isDarkMode
                     ? 'bg-gray-700 border-gray-600 text-gray-100 placeholder-gray-500 focus:border-blue-500'
-                    : 'border-gray-300 focus:border-indigo-500'
+                    : 'bg-white border-gray-300 text-gray-900 placeholder-gray-400 focus:border-indigo-500'
                 }`}
                 value={newProcess.priority}
                 onChange={(e) => setNewProcess({...newProcess, priority: e.target.value})}
@@ -352,8 +348,8 @@ const CPUSchedulerSimulator = () => {
             </button>
 
             <div
-              className={`max-h-64 overflow-y-auto rounded-lg ${
-                isDarkMode ? 'border border-gray-700' : 'border border-gray-200'
+              className={`max-h-64 overflow-y-auto rounded-lg border ${
+                isDarkMode ? 'border-gray-700' : 'border-gray-200'
               }`}
             >
               <table className="w-full">
@@ -363,34 +359,10 @@ const CPUSchedulerSimulator = () => {
                   }`}
                 >
                   <tr>
-                    <th
-                      className={`px-4 py-3 text-left font-semibold ${
-                        isDarkMode ? 'text-gray-300' : 'text-gray-700'
-                      }`}
-                    >
-                      PID
-                    </th>
-                    <th
-                      className={`px-4 py-3 text-left font-semibold ${
-                        isDarkMode ? 'text-gray-300' : 'text-gray-700'
-                      }`}
-                    >
-                      Arrival
-                    </th>
-                    <th
-                      className={`px-4 py-3 text-left font-semibold ${
-                        isDarkMode ? 'text-gray-300' : 'text-gray-700'
-                      }`}
-                    >
-                      Burst
-                    </th>
-                    <th
-                      className={`px-4 py-3 text-left font-semibold ${
-                        isDarkMode ? 'text-gray-300' : 'text-gray-700'
-                      }`}
-                    >
-                      Priority
-                    </th>
+                    <th className={`px-4 py-3 text-left font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>PID</th>
+                    <th className={`px-4 py-3 text-left font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Arrival</th>
+                    <th className={`px-4 py-3 text-left font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Burst</th>
+                    <th className={`px-4 py-3 text-left font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Priority</th>
                     <th className="px-4 py-3"></th>
                   </tr>
                 </thead>
@@ -399,46 +371,18 @@ const CPUSchedulerSimulator = () => {
                     <tr
                       key={idx}
                       className={`border-b ${
-                        isDarkMode
-                          ? 'border-gray-700 hover:bg-gray-750'
-                          : 'border-gray-200 hover:bg-gray-50'
+                        isDarkMode ? 'border-gray-700 hover:bg-gray-750' : 'border-gray-200 hover:bg-gray-50'
                       }`}
                     >
-                      <td
-                        className={`px-4 py-3 ${
-                          isDarkMode ? 'text-gray-200' : 'text-gray-900'
-                        }`}
-                      >
-                        {p.pid}
-                      </td>
-                      <td
-                        className={`px-4 py-3 ${
-                          isDarkMode ? 'text-gray-200' : 'text-gray-900'
-                        }`}
-                      >
-                        {p.arrivalTime}
-                      </td>
-                      <td
-                        className={`px-4 py-3 ${
-                          isDarkMode ? 'text-gray-200' : 'text-gray-900'
-                        }`}
-                      >
-                        {p.burstTime}
-                      </td>
-                      <td
-                        className={`px-4 py-3 ${
-                          isDarkMode ? 'text-gray-200' : 'text-gray-900'
-                        }`}
-                      >
-                        {p.priority}
-                      </td>
+                      <td className={isDarkMode ? 'px-4 py-3 text-gray-200' : 'px-4 py-3 text-gray-900'}>{p.pid}</td>
+                      <td className={isDarkMode ? 'px-4 py-3 text-gray-200' : 'px-4 py-3 text-gray-900'}>{p.arrivalTime}</td>
+                      <td className={isDarkMode ? 'px-4 py-3 text-gray-200' : 'px-4 py-3 text-gray-900'}>{p.burstTime}</td>
+                      <td className={isDarkMode ? 'px-4 py-3 text-gray-200' : 'px-4 py-3 text-gray-900'}>{p.priority}</td>
                       <td className="px-4 py-3">
                         <button
                           onClick={() => removeProcess(p.pid)}
                           className={`transition ${
-                            isDarkMode
-                              ? 'text-red-400 hover:text-red-300'
-                              : 'text-red-500 hover:text-red-700'
+                            isDarkMode ? 'text-red-400 hover:text-red-300' : 'text-red-500 hover:text-red-700'
                           }`}
                         >
                           <Trash2 size={18} />
@@ -453,10 +397,8 @@ const CPUSchedulerSimulator = () => {
 
           {/* Algorithm Selection */}
           <div
-            className={`rounded-lg p-6 shadow-2xl ${
-              isDarkMode
-                ? 'bg-gray-800 border border-gray-700'
-                : 'bg-white'
+            className={`rounded-lg shadow-2xl p-6 ${
+              isDarkMode ? 'bg-gray-800 border border-gray-700' : 'bg-white border border-gray-200'
             }`}
           >
             <h2
@@ -478,7 +420,7 @@ const CPUSchedulerSimulator = () => {
               className={`w-full border-2 rounded px-4 py-2 mb-4 focus:outline-none ${
                 isDarkMode
                   ? 'bg-gray-700 border-gray-600 text-gray-100 focus:border-blue-500'
-                  : 'border-gray-300 focus:border-indigo-500'
+                  : 'bg-white border-gray-300 text-gray-900 focus:border-indigo-500'
               }`}
               value={selectedAlgorithm}
               onChange={(e) => setSelectedAlgorithm(e.target.value)}
@@ -503,7 +445,7 @@ const CPUSchedulerSimulator = () => {
                   className={`w-full border-2 rounded px-4 py-2 focus:outline-none ${
                     isDarkMode
                       ? 'bg-gray-700 border-gray-600 text-gray-100 focus:border-blue-500'
-                      : 'border-gray-300 focus:border-indigo-500'
+                      : 'bg-white border-gray-300 text-gray-900 focus:border-indigo-500'
                   }`}
                   value={quantum}
                   onChange={(e) => setQuantum(parseInt(e.target.value))}
@@ -563,10 +505,8 @@ const CPUSchedulerSimulator = () => {
         {/* Results */}
         {results && (
           <div
-            className={`rounded-lg p-6 mb-6 shadow-2xl ${
-              isDarkMode
-                ? 'bg-gray-800 border border-gray-700'
-                : 'bg-white'
+            className={`rounded-lg shadow-2xl p-6 mb-6 ${
+              isDarkMode ? 'bg-gray-800 border border-gray-700' : 'bg-white border border-gray-200'
             }`}
           >
             <h2
@@ -579,57 +519,19 @@ const CPUSchedulerSimulator = () => {
             
             {/* Process Details Table */}
             <div
-              className={`overflow-x-auto rounded-lg mb-6 ${
-                isDarkMode ? 'border border-gray-700' : 'border border-gray-200'
+              className={`overflow-x-auto rounded-lg mb-6 border ${
+                isDarkMode ? 'border-gray-700' : 'border-gray-200'
               }`}
             >
               <table className="w-full">
-                <thead
-                  className={isDarkMode ? 'bg-gray-900' : 'bg-gray-100'}
-                >
+                <thead className={isDarkMode ? 'bg-gray-900' : 'bg-gray-100'}>
                   <tr>
-                    <th
-                      className={`px-4 py-3 text-left font-semibold ${
-                        isDarkMode ? 'text-gray-300' : 'text-gray-700'
-                      }`}
-                    >
-                      PID
-                    </th>
-                    <th
-                      className={`px-4 py-3 text-left font-semibold ${
-                        isDarkMode ? 'text-gray-300' : 'text-gray-700'
-                      }`}
-                    >
-                      Arrival
-                    </th>
-                    <th
-                      className={`px-4 py-3 text-left font-semibold ${
-                        isDarkMode ? 'text-gray-300' : 'text-gray-700'
-                      }`}
-                    >
-                      Burst
-                    </th>
-                    <th
-                      className={`px-4 py-3 text-left font-semibold ${
-                        isDarkMode ? 'text-gray-300' : 'text-gray-700'
-                      }`}
-                    >
-                      Completion
-                    </th>
-                    <th
-                      className={`px-4 py-3 text-left font-semibold ${
-                        isDarkMode ? 'text-gray-300' : 'text-gray-700'
-                      }`}
-                    >
-                      Waiting
-                    </th>
-                    <th
-                      className={`px-4 py-3 text-left font-semibold ${
-                        isDarkMode ? 'text-gray-300' : 'text-gray-700'
-                      }`}
-                    >
-                      Turnaround
-                    </th>
+                    <th className={`px-4 py-3 text-left font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>PID</th>
+                    <th className={`px-4 py-3 text-left font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Arrival</th>
+                    <th className={`px-4 py-3 text-left font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Burst</th>
+                    <th className={`px-4 py-3 text-left font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Completion</th>
+                    <th className={`px-4 py-3 text-left font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Waiting</th>
+                    <th className={`px-4 py-3 text-left font-semibold ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Turnaround</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -637,53 +539,15 @@ const CPUSchedulerSimulator = () => {
                     <tr
                       key={idx}
                       className={`border-b ${
-                        isDarkMode
-                          ? 'border-gray-700 hover:bg-gray-750'
-                          : 'border-gray-200 hover:bg-gray-50'
+                        isDarkMode ? 'border-gray-700 hover:bg-gray-750' : 'border-gray-200 hover:bg-gray-50'
                       }`}
                     >
-                      <td
-                        className={`px-4 py-3 font-semibold ${
-                          isDarkMode ? 'text-blue-400' : 'text-gray-900'
-                        }`}
-                      >
-                        {p.pid}
-                      </td>
-                      <td
-                        className={`px-4 py-3 ${
-                          isDarkMode ? 'text-gray-200' : 'text-gray-900'
-                        }`}
-                      >
-                        {p.arrivalTime}
-                      </td>
-                      <td
-                        className={`px-4 py-3 ${
-                          isDarkMode ? 'text-gray-200' : 'text-gray-900'
-                        }`}
-                      >
-                        {p.burstTime}
-                      </td>
-                      <td
-                        className={`px-4 py-3 ${
-                          isDarkMode ? 'text-gray-200' : 'text-gray-900'
-                        }`}
-                      >
-                        {p.completionTime}
-                      </td>
-                      <td
-                        className={`px-4 py-3 ${
-                          isDarkMode ? 'text-gray-200' : 'text-gray-900'
-                        }`}
-                      >
-                        {p.waitingTime}
-                      </td>
-                      <td
-                        className={`px-4 py-3 ${
-                          isDarkMode ? 'text-gray-200' : 'text-gray-900'
-                        }`}
-                      >
-                        {p.turnaroundTime}
-                      </td>
+                      <td className={isDarkMode ? 'px-4 py-3 font-semibold text-blue-400' : 'px-4 py-3 font-semibold text-indigo-700'}>{p.pid}</td>
+                      <td className={isDarkMode ? 'px-4 py-3 text-gray-200' : 'px-4 py-3 text-gray-900'}>{p.arrivalTime}</td>
+                      <td className={isDarkMode ? 'px-4 py-3 text-gray-200' : 'px-4 py-3 text-gray-900'}>{p.burstTime}</td>
+                      <td className={isDarkMode ? 'px-4 py-3 text-gray-200' : 'px-4 py-3 text-gray-900'}>{p.completionTime}</td>
+                      <td className={isDarkMode ? 'px-4 py-3 text-gray-200' : 'px-4 py-3 text-gray-900'}>{p.waitingTime}</td>
+                      <td className={isDarkMode ? 'px-4 py-3 text-gray-200' : 'px-4 py-3 text-gray-900'}>{p.turnaroundTime}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -700,9 +564,7 @@ const CPUSchedulerSimulator = () => {
             </h3>
             <div
               className={`rounded-lg p-4 mb-6 overflow-x-auto border ${
-                isDarkMode
-                  ? 'bg-gray-900 border-gray-700'
-                  : 'bg-gray-100 border-gray-200'
+                isDarkMode ? 'bg-gray-900 border-gray-700' : 'bg-gray-100 border-gray-200'
               }`}
             >
               <div className="flex min-w-max">
@@ -713,33 +575,19 @@ const CPUSchedulerSimulator = () => {
                         isDarkMode ? 'border-gray-600' : 'border-white'
                       }`}
                       style={{
-                        width: `${g.duration * 40}px`,
-                        backgroundColor: colors[
-                          processes.findIndex(p => p.pid === g.pid) %
-                            colors.length
-                        ]
+                        width: '80px',
+                        backgroundColor: colors[processes.findIndex(p => p.pid === g.pid) % colors.length]
                       }}
                     >
                       {g.pid}
                     </div>
-                    <div
-                      className={`text-xs mt-1 ${
-                        isDarkMode ? 'text-gray-400' : 'text-gray-700'
-                      }`}
-                    >
-                      {g.start}
-                    </div>
+                    <div className={isDarkMode ? 'text-xs mt-1 text-gray-400' : 'text-xs mt-1 text-gray-700'}>{g.start}</div>
                   </div>
                 ))}
                 <div className="flex flex-col items-center">
                   <div className="h-16"></div>
-                  <div
-                    className={`text-xs mt-1 ${
-                      isDarkMode ? 'text-gray-400' : 'text-gray-700'
-                    }`}
-                  >
-                    {results.gantt[results.gantt.length - 1].start +
-                      results.gantt[results.gantt.length - 1].duration}
+                  <div className={isDarkMode ? 'text-xs mt-1 text-gray-400' : 'text-xs mt-1 text-gray-700'}>
+                    {results.gantt[results.gantt.length - 1].start + results.gantt[results.gantt.length - 1].duration}
                   </div>
                 </div>
               </div>
@@ -768,9 +616,7 @@ const CPUSchedulerSimulator = () => {
                 >
                   {results.avgWaiting.toFixed(2)}
                 </div>
-                <div
-                  className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}
-                >
+                <div className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>
                   Average Waiting Time
                 </div>
               </div>
@@ -788,9 +634,7 @@ const CPUSchedulerSimulator = () => {
                 >
                   {results.avgTurnaround.toFixed(2)}
                 </div>
-                <div
-                  className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}
-                >
+                <div className={isDarkMode ? 'text-gray-300' : 'text-gray-700'}>
                   Average Turnaround Time
                 </div>
               </div>
@@ -818,9 +662,7 @@ const CPUSchedulerSimulator = () => {
                 <Tooltip
                   contentStyle={{
                     backgroundColor: isDarkMode ? '#1f2937' : '#ffffff',
-                    border: `1px solid ${
-                      isDarkMode ? '#374151' : '#e5e7eb'
-                    }`,
+                    border: `1px solid ${isDarkMode ? '#374151' : '#e5e7eb'}`,
                     borderRadius: '0.5rem',
                     color: isDarkMode ? '#e5e7eb' : '#1f2937'
                   }}
@@ -830,16 +672,8 @@ const CPUSchedulerSimulator = () => {
                     color: isDarkMode ? '#9ca3af' : '#4b5563'
                   }}
                 />
-                <Bar
-                  dataKey="waitingTime"
-                  fill="#3b82f6"
-                  name="Waiting Time"
-                />
-                <Bar
-                  dataKey="turnaroundTime"
-                  fill="#10b981"
-                  name="Turnaround Time"
-                />
+                <Bar dataKey="waitingTime" fill="#3b82f6" name="Waiting Time" />
+                <Bar dataKey="turnaroundTime" fill="#10b981" name="Turnaround Time" />
               </BarChart>
             </ResponsiveContainer>
           </div>
