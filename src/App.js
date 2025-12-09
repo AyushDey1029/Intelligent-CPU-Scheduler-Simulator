@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Play, Plus, Brain, RotateCcw, Moon, Sun } from 'lucide-react';
 
 // Process Class
@@ -513,7 +514,7 @@ const CPUSchedulerSimulator = () => {
             <h3 className={`text-xl font-semibold mb-3 ${isDarkMode ? 'text-gray-100' : 'text-gray-800'}`}>
               Process Details
             </h3>
-            <div className={`overflow-x-auto rounded-lg ${isDarkMode ? 'border border-gray-700' : ''}`}>
+            <div className={`overflow-x-auto rounded-lg mb-6 ${isDarkMode ? 'border border-gray-700' : ''}`}>
               <table className="w-full">
                 <thead className={isDarkMode ? 'bg-gray-900' : 'bg-gray-100'}>
                   <tr>
@@ -553,6 +554,29 @@ const CPUSchedulerSimulator = () => {
                 </tbody>
               </table>
             </div>
+
+            {/* Performance Comparison Chart */}
+            <h3 className={`text-xl font-semibold mb-3 ${isDarkMode ? 'text-gray-100' : 'text-gray-800'}`}>
+              Performance Comparison
+            </h3>
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={results.processes}>
+                <CartesianGrid strokeDasharray="3 3" stroke={isDarkMode ? '#374151' : '#e5e7eb'} />
+                <XAxis dataKey="pid" stroke={isDarkMode ? '#9ca3af' : '#4b5563'} />
+                <YAxis stroke={isDarkMode ? '#9ca3af' : '#4b5563'} />
+                <Tooltip 
+                  contentStyle={{ 
+                    backgroundColor: isDarkMode ? '#1f2937' : '#ffffff',
+                    border: `1px solid ${isDarkMode ? '#374151' : '#e5e7eb'}`,
+                    borderRadius: '0.5rem',
+                    color: isDarkMode ? '#e5e7eb' : '#1f2937'
+                  }} 
+                />
+                <Legend wrapperStyle={{ color: isDarkMode ? '#9ca3af' : '#4b5563' }} />
+                <Bar dataKey="waitingTime" fill="#3b82f6" name="Waiting Time" />
+                <Bar dataKey="turnaroundTime" fill="#10b981" name="Turnaround Time" />
+              </BarChart>
+            </ResponsiveContainer>
           </div>
         )}
       </div>
