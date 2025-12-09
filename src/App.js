@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { Play, Plus, Brain, RotateCcw, Moon, Sun } from 'lucide-react';
+import { Play, Plus, Brain, RotateCcw, Moon, Sun, Trash2 } from 'lucide-react';
 
 // Process Class
 class Process {
@@ -199,6 +199,10 @@ const CPUSchedulerSimulator = () => {
     }
   };
 
+  const removeProcess = (pid) => {
+    setProcesses(processes.filter(p => p.pid !== pid));
+  };
+
   const simulate = () => {
     const processCopies = processes.map(p => new Process(p.pid, p.arrivalTime, p.burstTime, p.priority));
     const result = selectedAlgorithm === 'roundRobin' 
@@ -333,6 +337,7 @@ const CPUSchedulerSimulator = () => {
                     <th className={`px-4 py-2 text-left ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Arrival</th>
                     <th className={`px-4 py-2 text-left ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Burst</th>
                     <th className={`px-4 py-2 text-left ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Priority</th>
+                    <th className={`px-4 py-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -344,6 +349,16 @@ const CPUSchedulerSimulator = () => {
                       <td className={`px-4 py-2 ${isDarkMode ? 'text-gray-200' : 'text-gray-900'}`}>{p.arrivalTime}</td>
                       <td className={`px-4 py-2 ${isDarkMode ? 'text-gray-200' : 'text-gray-900'}`}>{p.burstTime}</td>
                       <td className={`px-4 py-2 ${isDarkMode ? 'text-gray-200' : 'text-gray-900'}`}>{p.priority}</td>
+                      <td className="px-4 py-2">
+                        <button
+                          onClick={() => removeProcess(p.pid)}
+                          className={`transition ${
+                            isDarkMode ? 'text-red-400 hover:text-red-300' : 'text-red-500 hover:text-red-700'
+                          }`}
+                        >
+                          <Trash2 size={18} />
+                        </button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
